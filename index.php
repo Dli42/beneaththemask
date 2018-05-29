@@ -48,7 +48,6 @@
 	document.getElementById('audio-default-instr').volume = 0.0;
 	document.getElementById('audio-rain').volume = 0.0;
 	document.getElementById('audio-rain-instr').volume = 0.0;
-	document.getElementById('demo').innerHTML = currentTrack;
 	
 	function switchTrack(trackName){
 
