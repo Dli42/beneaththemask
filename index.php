@@ -52,16 +52,17 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	var currentTrack = "audio-default";
 	var audio_default = document.getElementById('audio-default');
 	var audio_default_instr = document.getElementById('audio-default-instr');
 	var audio_rain = document.getElementById('audio-rain');
 	var audio_rain_instr = document.getElementById('audio-rain-instr');
 
-	document.getElementById(currentTrack).volume = 1.0;
-	document.getElementById('audio-default-instr').volume = 0.0;
-	document.getElementById('audio-rain').volume = 0.0;
-	document.getElementById('audio-rain-instr').volume = 0.0;
+	var currentTrack = audio_default;
+
+	currentTrack.volume = 1.0;
+	audio_default_instr.volume = 0.0;
+	audio_rain.volume = 0.0;
+	audio_rain_instr.volume = 0.0;
 
 	var promise = document.querySelector('audio').play();
 
@@ -82,24 +83,23 @@
 	audio_rain_instr.addEventListener('canplaythrough', function () {console.log('audio_rain_instr can play '+Date.now())});
 
 	function play(){
-		document.getElementById('audio-default').play();
-		document.getElementById('audio-default-instr').play();
-		document.getElementById('audio-rain').play();
-		document.getElementById('audio-rain-instr').play();
+		audio_default.play();
+		audio_default_instr.play();
+		audio_rain.play();
+		audio_rain_instr.play();
 		document.getElementById('play').hidden = true;
 	}
 	
 	function switchTrack(trackName){
 
-		if (currentTrack != trackName){
+		if (currentTrack.id != trackName){
 
-			var currentAudio = document.getElementById(currentTrack);
-			var nextAudio = document.getElementById(trackName);
+			var nextTrack = document.getElementById(trackName);
 
-			$(currentAudio).animate({volume: 0.0}, 1000);
-			$(nextAudio).animate({volume: 1.0}, 1000);
+			$(currentTrack).animate({volume: 0.0}, 1000);
+			$(nextTrack).animate({volume: 1.0}, 1000);
 
-			currentTrack = trackName;
+			currentTrack = nextTrack;
 		}
 	}
 </script>
