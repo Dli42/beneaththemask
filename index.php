@@ -47,6 +47,9 @@
 </div>
 
 <h1 id="demo">test</h1>
+
+<img src="crowd/image2vector.svg">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	var currentTrack = "audio-default";
@@ -66,6 +69,11 @@
 	    document.getElementById('play').hidden = false;
 	  });
 	}
+
+	var audio = document.getElementById(currentTrack);
+	var date = new Date();
+	console.log('start script '+date.getTime());
+	audio.addEventListener('canplaythrough', function () {console.log('can play '+date.getTime())});
 
 	function play(){
 		document.getElementById('audio-default').play();
