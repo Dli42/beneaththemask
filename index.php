@@ -75,11 +75,11 @@
 	  });
 	}
 
-	console.log('start script '+Date().now());
-	audio_default.addEventListener('canplaythrough', function () {console.log('audio_default can play '+Date().now())});
-	audio_default_instr.addEventListener('canplaythrough', function () {console.log('audio_default_instr can play '+Date().now())});
-	audio_rain.addEventListener('canplaythrough', function () {console.log('audio_rain can play '+Date().now())});
-	audio_rain_instr.addEventListener('canplaythrough', function () {console.log('audio_rain_instr can play '+Date().now())});
+	console.log('start script '+Date.now());
+	audio_default.addEventListener('canplaythrough', function () {console.log('audio_default can play '+Date.now())});
+	audio_default_instr.addEventListener('canplaythrough', function () {console.log('audio_default_instr can play '+Date.now())});
+	audio_rain.addEventListener('canplaythrough', function () {console.log('audio_rain can play '+Date.now())});
+	audio_rain_instr.addEventListener('canplaythrough', function () {console.log('audio_rain_instr can play '+Date.now())});
 
 	function play(){
 		document.getElementById('audio-default').play();
