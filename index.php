@@ -56,7 +56,7 @@
 	var audio_default = document.getElementById('audio-default');
 	var audio_default_instr = document.getElementById('audio-default-instr');
 	var audio_rain = document.getElementById('audio-rain');
-	var audio_rain_intr = document.getElementById('audio-rain-instr');
+	var audio_rain_instr = document.getElementById('audio-rain-instr');
 
 	document.getElementById(currentTrack).volume = 1.0;
 	document.getElementById('audio-default-instr').volume = 0.0;
