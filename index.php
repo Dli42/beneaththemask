@@ -53,6 +53,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	var currentTrack = "audio-default";
+	var audio_default = document.getElementById('audio-default');
+	var audio_default_instr = document.getElementById('audio-default-instr');
+	var audio_rain = document.getElementById('audio-rain');
+	var audio_rain_intr = document.getElementById('audio-rain-instr');
+
 	document.getElementById(currentTrack).volume = 1.0;
 	document.getElementById('audio-default-instr').volume = 0.0;
 	document.getElementById('audio-rain').volume = 0.0;
@@ -70,10 +75,12 @@
 	  });
 	}
 
-	var audio = document.getElementById(currentTrack);
 	var date = new Date();
 	console.log('start script '+date.getTime());
-	audio.addEventListener('canplaythrough', function () {console.log('can play '+date.getTime())});
+	audio_default.addEventListener('canplaythrough', function () {console.log('audio_default can play '+date.getTime())});
+	audio_default_instr.addEventListener('canplaythrough', function () {console.log('audio_default_instr can play '+date.getTime())});
+	audio_rain.addEventListener('canplaythrough', function () {console.log('audio_rain can play '+date.getTime())});
+	audio_rain_instr.addEventListener('canplaythrough', function () {console.log('audio_rain_instr can play '+date.getTime())});
 
 	function play(){
 		document.getElementById('audio-default').play();
