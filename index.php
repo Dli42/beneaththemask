@@ -19,19 +19,19 @@
 	</style>
 </head>
 
-<audio id="audio-default" controls autoplay loop>
+<audio id="audio-default" controls loop>
 	<source id="source-default" src="music/beneath_the_mask.mp3" type="audio/mp3"></source>
 </audio>
 
-<audio id="audio-default-instr" controls autoplay loop>
+<audio id="audio-default-instr" controls loop>
 	<source id="source-default-instr" src="music/beneath_the_mask_instr.mp3" type="audio/mp3"></source>
 </audio>
 
-<audio id="audio-rain" controls autoplay loop>
+<audio id="audio-rain" controls loop>
 	<source id="source-rain" src="music/beneath_the_mask_rain.mp3" type="audio/mp3"></source>
 </audio>
 
-<audio id="audio-rain-instr" controls autoplay loop>
+<audio id="audio-rain-instr" controls loop>
 	<source id="source-rain-vocals" src="music/beneath_the_mask_rain_instr.mp3" type="audio/mp3"></source>
 </audio>
 
@@ -64,10 +64,20 @@
 	audio_rain.volume = 0.0;
 	audio_rain_instr.volume = 0.0;
 
-	var promise = document.querySelector('audio').play();
+	console.log('start script '+Date.now());
+	var promise_audio_default = audio_default.addEventListener('canplaythrough', function () {console.log('audio_default can play '+Date.now())});
+	var promise_audio_default_instr = audio_default_instr.addEventListener('canplaythrough', function () {console.log('audio_default_instr can play '+Date.now())});
+	var promise_audio_rain = audio_rain.addEventListener('canplaythrough', function () {console.log('audio_rain can play '+Date.now())});
+	var promise_audio_rain_instr = audio_rain_instr.addEventListener('canplaythrough', function () {console.log('audio_rain_instr can play '+Date.now())});
 
-	if (promise !== undefined) {
-	  promise.then(_ => {
+	Promise.all([promise_audio_default, promise_audio_default_instr, promise_audio_rain, promise_audio_rain_instr]).then(function() {
+  		console.log('Done buffering, trying to play');
+  		play(););
+
+	var promise_autoplay = document.querySelector('audio').play();
+
+	if (promise_autoplay !== undefined) {
+	  promise_autoplay.then(_ => {
 	    // Autoplay started!
 	  }).catch(error => {
 	    // Autoplay was prevented.
@@ -75,12 +85,6 @@
 	    document.getElementById('play').hidden = false;
 	  });
 	}
-
-	console.log('start script '+Date.now());
-	audio_default.addEventListener('canplaythrough', function () {console.log('audio_default can play '+Date.now())});
-	audio_default_instr.addEventListener('canplaythrough', function () {console.log('audio_default_instr can play '+Date.now())});
-	audio_rain.addEventListener('canplaythrough', function () {console.log('audio_rain can play '+Date.now())});
-	audio_rain_instr.addEventListener('canplaythrough', function () {console.log('audio_rain_instr can play '+Date.now())});
 
 	function play(){
 		audio_default.play();
