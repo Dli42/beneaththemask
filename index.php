@@ -72,7 +72,7 @@
 
 	Promise.all([promise_audio_default, promise_audio_default_instr, promise_audio_rain, promise_audio_rain_instr]).then(function() {
   		console.log('Done buffering, trying to play');
-  		play(););
+  		play();});
 
 	var promise_autoplay = document.querySelector('audio').play();
 
