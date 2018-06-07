@@ -19,19 +19,19 @@
 	</style>
 </head>
 
-<audio id="audio-default" controls loop>
+<audio id="audio-default" controls autoplay loop>
 	<source id="source-default" src="music/beneath_the_mask.mp3" type="audio/mp3"></source>
 </audio>
 
-<audio id="audio-default-instr" controls loop>
+<audio id="audio-default-instr" controls autoplay loop>
 	<source id="source-default-instr" src="music/beneath_the_mask_instr.mp3" type="audio/mp3"></source>
 </audio>
 
-<audio id="audio-rain" controls loop>
+<audio id="audio-rain" controls autoplay loop>
 	<source id="source-rain" src="music/beneath_the_mask_rain.mp3" type="audio/mp3"></source>
 </audio>
 
-<audio id="audio-rain-instr" controls loop>
+<audio id="audio-rain-instr" controls autoplay loop>
 	<source id="source-rain-vocals" src="music/beneath_the_mask_rain_instr.mp3" type="audio/mp3"></source>
 </audio>
 
@@ -42,7 +42,7 @@
 		<th id="rain-instr" onclick="switchTrack('audio-rain')" onmouseover="" style="cursor: pointer;">Rain</th>
 		<th id="rain-vocals" onclick="switchTrack('audio-rain-instr')" onmouseover="" style="cursor: pointer;">Rain Intr</th>
 		<th id="mute" onclick="switchTrack('mute')" onmouseover="" style="cursor: pointer;">Mute</th>
-		<th id="play" onclick="play()" onmouseover="" style="cursor: pointer;" hidden>Play</th>
+		<th id="play" onclick="play_all()" onmouseover="" style="cursor: pointer;" hidden>Play</th>
 	</table>
 </div>
 
@@ -59,7 +59,7 @@
 
 	var currentTrack = audio_default;
 
-	currentTrack.volume = 1.0;
+	currentTrack.volume = 0.0;
 	audio_default_instr.volume = 0.0;
 	audio_rain.volume = 0.0;
 	audio_rain_instr.volume = 0.0;
@@ -76,7 +76,7 @@
 	}))
 	.then(function(){
 		console.log('Can play through everything, trying to play all ' + Date.now());
-		play();
+		play_all();
 	});
 
 	var promise_autoplay = document.querySelector('audio').play();
@@ -91,11 +91,12 @@
 	  });
 	}
 
-	function play(){
-		audio_default.play();
-		audio_default_instr.play();
-		audio_rain.play();
-		audio_rain_instr.play();
+	function play_all(){
+		audio_array.map(function(audio){
+			audio.currentTime = 0;
+			audio.play();
+		});
+		$(currentTrack).animate({volume: 1.0}, 1000);
 		document.getElementById('play').hidden = true;
 	}
 	
