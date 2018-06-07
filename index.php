@@ -79,7 +79,7 @@
 		play();
 	});
 
-	var promise_autoplay = document.querySelector('audio').play();
+	var promise_autoplay = !(audio_default.paused);
 
 	if (promise_autoplay !== undefined) {
 	  promise_autoplay.then(_ => {
