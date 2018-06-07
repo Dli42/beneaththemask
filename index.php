@@ -66,22 +66,17 @@
 
 	console.log('start script '+Date.now());
 	var promise_audio_default = new Promise(function() {
-		audio_default.addEventListener('canplaythrough', function () {
-			console.log('audio_default can play '+Date.now());});
-	});
+		audio_default.addEventListener('canplaythrough', resolve());
+	}).then(function () {console.log('audio_default can play '+Date.now());});
 	var promise_audio_default_instr = new Promise(function() {
-		audio_default_instr.addEventListener('canplaythrough', function () {
-			console.log('audio_default_instr can play '+Date.now());});
-	});
+		audio_default_instr.addEventListener('canplaythrough', resolve());
+	}).then(function () {console.log('audio_default_instr can play '+Date.now());});
 	var promise_audio_rain = new Promise(function() {
-		audio_rain.addEventListener('canplaythrough', function () {
-			console.log('audio_rain can play '+Date.now());});
-	});
-
+		audio_rain.addEventListener('canplaythrough', resolve());
+	}).then(function () {console.log('audio_rain can play '+Date.now());});
 	var promise_audio_rain_instr = new Promise(function() {
-		audio_rain_instr.addEventListener('canplaythrough', function () {
-			console.log('audio_rain_instr can play '+Date.now());});
-	});
+		audio_rain_instr.addEventListener('canplaythrough', resolve());
+	}).then(function () {console.log('audio_rain_instr can play '+Date.now());});
 
 	Promise.all([promise_audio_default, promise_audio_default_instr, promise_audio_rain, promise_audio_rain_instr]).then(function() {
   		console.log('Done buffering, trying to play');
