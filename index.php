@@ -48,7 +48,7 @@
 
 <h1 id="demo">test</h1>
 
-<img src="crowd/image2vector.svg">
+<img src="crowd/crowd000_000.pac_0_risultato.png">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -97,7 +97,19 @@
 			audio.play();
 		});
 		$(currentTrack).animate({volume: 1.0}, 1000);
-		document.getElementById('play').hidden = true;
+
+		var promise_autoplay = document.querySelector('audio').play();
+
+		if (promise_autoplay !== undefined) {
+		  promise_autoplay.then(_ => {
+		    // Autoplay started!
+		    document.getElementById('play').hidden = true;
+		  }).catch(error => {
+		    // Autoplay was prevented.
+		    // Show a "Play" button so that user can start playback.
+		    document.getElementById('play').hidden = false;
+		  });
+		}
 	}
 	
 	function switchTrack(trackName){
